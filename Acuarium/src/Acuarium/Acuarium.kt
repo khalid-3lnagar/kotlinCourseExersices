@@ -10,11 +10,25 @@ fun main() {
     val anotherAcuarium = Acuarium(numberOfFish = 9)
     println("custom constructor Acuarium Values\n$anotherAcuarium")
     val fish = Fish(volumeNeeded = 5)
-    val fish1 = fish.makeDefultFish()
+    val fish1 = makeDefultFish()
     val fish2 = Fish()
+    makeFish()
 }
 
 fun buildAcuarium() = Acuarium()
+fun makeDefultFish() = Fish(true, 5)
+fun makeFish() {
+    val shark = Shark()
+    val pleco = Plecostomus()
+    println("shark color: ${shark.color} pleco color: ${pleco.color}")
+
+    feedFish(shark)
+    feedFish(pleco)
+}
+
+fun feedFish(fish: FishAction) {
+    fish.eat()
+}
 
 open class Acuarium(val width: Int = 20, var height: Int = 20, val length: Int = 20) {
     open var volume: Int
@@ -64,8 +78,4 @@ class Fish(val frindley: Boolean = true, volumeNeeded: Int) {
     constructor() : this(false, 3) {
         println("init second constructor..")
     }
-
-
-    fun makeDefultFish() = Fish(true, 5)
-
 }

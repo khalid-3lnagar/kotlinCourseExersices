@@ -12,7 +12,7 @@ import java.util.*
 fun main() {
 
     //play with filter
-    filterList()
+
     //lambda and Named Function in different ways
     gamePlay(rollDice0(3))
     gamePlay(rollDice1())
