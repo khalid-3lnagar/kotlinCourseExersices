@@ -10,9 +10,6 @@ import java.util.*
  * to generate a dice roll every time gamePlay() is called.
  * */
 fun main() {
-
-    //play with filter
-
     //lambda and Named Function in different ways
     gamePlay(rollDice0(3))
     gamePlay(rollDice1())
