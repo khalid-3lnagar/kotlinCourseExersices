@@ -25,16 +25,64 @@ class BasicBooK(title: String, author: String, val year: String) : Book(title, a
 }
 
 fun main() {
-    createBook()
+
+    println(createLibrary(createBook()))
 }
 
-fun createBook() {
-    val harryPotter =
-        BasicBooK(title = "Harry Potter and the Philosopher's Stone", author = "J. K. Rowling", year = "2010")
-    println(harryPotter.getInfo())
-    println(harryPotter.getInfoWithYear())
-    val (title, author) = harryPotter.getInfo()
-    println("title: $title\nauthor: $author\n")
-    val year = harryPotter.getInfoWithYear().third
-    println("Here is your book \'$title\' written by \'$author\' in $year")
+fun createLibrary(books: List<BasicBooK>): Map<String, List<BasicBooK>> {
+    val allBooks: Map<String, List<BasicBooK>> = mapOf(books[0].author to books)
+    println(allBooks.any { it.value.any { it.title == "The Goblet of Fire" } })
+    val moreBooks = mutableMapOf(books[0].title to books[0].author)
+    println(moreBooks.getOrPut(books[0].title) { books[0].author })
+    return allBooks
+}
+
+/*The Philosopher's Stone (1997)
+The Chamber of Secrets (1998)
+The Prisoner of Azkaban (1999)
+The Goblet of Fire (2000)
+The Order of the Phoenix (2003)
+The Half-Blood Prince (2005)
+The Deathly Hallows (2007)
+*/
+fun createBook(): List<BasicBooK> {
+    val harryPotterBooks = listOf<BasicBooK>(
+        BasicBooK(
+            title = "the Philosopher's Stone",
+            author = "J. K. Rowling",
+            year = "1997"
+        ),
+        BasicBooK(
+            title = "The Chamber of Secrets",
+            author = "J. K. Rowling",
+            year = "1998"
+        ),
+        BasicBooK(
+            title = "The Prisoner of Azkaban ",
+            author = "J. K. Rowling",
+            year = "1999"
+        ),
+        BasicBooK(
+            title = "The Goblet of Fire",
+            author = "J. K. Rowling",
+            year = "2000"
+        ), BasicBooK(
+            title = "The Order of the Phoenix",
+            author = "J. K. Rowling",
+            year = "2003"
+        ), BasicBooK(
+            title = "The Half-Blood Prince",
+            author = "J. K. Rowling",
+            year = "2005"
+        ), BasicBooK(
+            title = "The Deathly Hallows",
+            author = "J. K. Rowling",
+            year = "2007"
+        )
+    )
+    harryPotterBooks.forEach {
+        val (title, author, year) = it.getInfoWithYear()
+        println("Here is your book \'$title\' written by \'$author\' in $year")
+    }
+    return harryPotterBooks
 }
