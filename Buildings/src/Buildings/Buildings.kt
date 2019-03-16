@@ -4,8 +4,8 @@ open class BaseBuildingMaterial(open val numberNeeded: Int = 1)
 class Brick() : BaseBuildingMaterial(numberNeeded = 8) {}
 class Wood() : BaseBuildingMaterial(numberNeeded = 4) {}
 
-class Building<T : BaseBuildingMaterial>
-    (var buildingMaterial: T, val baseMaterialsNeeded: Int = 100) {
+class Building<out T : BaseBuildingMaterial>
+    (val buildingMaterial: T, val baseMaterialsNeeded: Int = 100) {
     fun actualMaterialsNeeded(): Int = baseMaterialsNeeded * buildingMaterial.numberNeeded
 
 
@@ -17,9 +17,16 @@ class Building<T : BaseBuildingMaterial>
 
 }
 
+fun <R : BaseBuildingMaterial> isSmallBuilding(building: Building<R>) =
+    if (building.actualMaterialsNeeded() < 500) "small building" else "large building"
+
+
 fun main() {
     val builder = Building(Wood())
     val builder2 = Building(Brick())
     builder.build()
+    println(isSmallBuilding(builder))
     builder2.build()
+    println(isSmallBuilding(builder2))
+
 }
