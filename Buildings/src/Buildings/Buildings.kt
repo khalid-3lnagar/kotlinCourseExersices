@@ -22,11 +22,13 @@ fun <R : BaseBuildingMaterial> isSmallBuilding(building: Building<R>) =
 
 
 fun main() {
+    fun Building<*>.isSmallBuilding() = if (this.actualMaterialsNeeded() < 500) "small building" else "large building"
     val builder = Building(Wood())
     val builder2 = Building(Brick())
     builder.build()
     println(isSmallBuilding(builder))
+    println(builder.isSmallBuilding())
     builder2.build()
     println(isSmallBuilding(builder2))
-
+    println(builder2.isSmallBuilding())
 }
