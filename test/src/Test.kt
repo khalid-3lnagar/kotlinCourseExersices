@@ -25,7 +25,7 @@ fun main() {
     listDivBy3.forEach(::print)
 }
 
-fun List<Int>.listIf(block: (Int) -> Boolean): MutableList<Int> =
+inline fun List<Int>.listIf(block: (Int) -> Boolean): MutableList<Int> =
     mutableListOf<Int>().apply { this@listIf.forEach { if (block(it)) add(it) } }
 
 
