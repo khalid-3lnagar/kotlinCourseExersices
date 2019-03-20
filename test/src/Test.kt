@@ -21,8 +21,12 @@ fun main() {
             else -> Random().nextInt(it) + 1
         }
     }
-
+    val listDivBy3 = listOf<Int>(1, 2, 3, 4, 5, 6, 7, 8, 9, 0).listIf { it % 3 == 0 }
+    listDivBy3.forEach(::print)
 }
+
+fun List<Int>.listIf(block: (Int) -> Boolean): MutableList<Int> =
+    mutableListOf<Int>().apply { this@listIf.forEach { if (block(it)) add(it) } }
 
 
 //lambda and named functions different ways to declare same logic
